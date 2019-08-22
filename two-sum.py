@@ -24,17 +24,17 @@ class Solution:
        
         # this worked but take too much time for large inputs
         '''
+        # Working but didn't accept due to long time
         for i, num1 in enumerate(nums):
             for j, num2 in enumerate(nums):
                 tot = num1 + num2
                 if i == j:
                     pass
                 elif tot == target:
-                    return [i, j]\
+                    return [i, j]
         '''
-        
-        
-        # This dicttionary solution is much faster (because only has one for loop)
+        '''
+        # Best solution (very fast)
         dic = {}
         
         for i, num in enumerate(nums):
@@ -44,6 +44,28 @@ class Solution:
                 dic[num] = i
             else:
                 return[dic[diff], i]
+                
+        '''
+        
+        '''
+        # Works but very slow
+        L = len(nums)
+        for i in range(L):
+            for j in range(i+1,L):
+                if nums[i] + nums[j] == target:
+                    return [i,j]
+        
+        '''
+        
+        # Works but somewhat slow
+        for i, num in enumerate(nums):
+            diff = target - num
+                                  
+            try:
+                j = nums[i+1:].index(diff)
+                return [i,i+j+1]
+            except ValueError:
+                pass
                 
                 
                 
